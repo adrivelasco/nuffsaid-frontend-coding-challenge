@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { useEntriesByGroup } from './useEntriesByGroup';
+import { useEntriesByGroup } from "./useEntriesByGroup";
 import { MessagesContext } from "./MessagesContext";
 
 export interface MessagesProviderProps {
@@ -10,9 +10,5 @@ export interface MessagesProviderProps {
 export const MessagesProvider = ({ children }: MessagesProviderProps) => {
   const context = useEntriesByGroup();
 
-  return (
-    <MessagesContext value={context}>
-      {children}
-    </MessagesContext>
-  );
-}
+  return <MessagesContext value={context}>{children}</MessagesContext>;
+};

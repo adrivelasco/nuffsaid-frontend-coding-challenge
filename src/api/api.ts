@@ -1,6 +1,6 @@
-import random from 'lodash/random';
-import faker from 'faker';
-import { Observable } from 'rxjs';
+import random from "lodash/random";
+import faker from "faker";
+import { Observable } from "rxjs";
 
 export enum Priority {
   Error,
@@ -13,7 +13,7 @@ export interface Message {
   priority: Priority;
 }
 
-const observable = new Observable<Message>(subscriber => {
+const observable = new Observable<Message>((subscriber) => {
   const generate = () => {
     const message = faker.lorem.sentence();
     const priority = random(0, 2) as Priority;

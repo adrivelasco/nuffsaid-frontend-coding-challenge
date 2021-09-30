@@ -1,15 +1,15 @@
 import { createTheme } from "@mui/material";
 
 export const theme = createTheme({
-  palette:  {
+  palette: {
     error: {
-      main: '#f56236',
+      main: "#f56236",
     },
     info: {
-      main: '#88fca3',
+      main: "#88fca3",
     },
     warning: {
-      main: '#fce788',
-    }
-  }
+      main: "#fce788",
+    },
+  },
 });

@@ -5,14 +5,17 @@ export interface GroupProps extends BoxProps {
   description: string;
 }
 
-export const Group = ({ children, title, description, ...props }: GroupProps) => (
+export const Group = ({
+  children,
+  title,
+  description,
+  ...props
+}: GroupProps) => (
   <Box {...props}>
     <Box fontWeight="bold" fontSize="x-large">
       {title}
     </Box>
-    <Box>
-      {description}
-    </Box>
+    <Box>{description}</Box>
     <Box position="relative" mt={2}>
       {children}
     </Box>

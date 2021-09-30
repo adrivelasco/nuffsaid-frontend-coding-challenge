@@ -5,7 +5,7 @@ export interface DashboardActionsProps {
   onClear: () => void;
   onStart: () => void;
   onStop: () => void;
-};
+}
 
 export const DashboardActions = ({
   isSubscribed,
@@ -29,4 +29,4 @@ export const DashboardActions = ({
       </Button>
     </Box>
   );
-}
+};

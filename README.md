@@ -6,14 +6,15 @@ The purpose of the application is to correctly render a stream of messages comin
 This challenge already includes an API response. It is not required or expected for you to make any changes to this interaction.
 
 The 3 priorities that we provide you are:
-  * 0 = error
-  * 1 = warning
-  * 2 = info
+
+- 0 = error
+- 1 = warning
+- 2 = info
 
 ### Acceptance Criteria
 
 1. Messages should be rendered in a table-like structure. The newest messages should appear at the top of their respective columns.
-2. Provide test coverage of the components. 
+2. Provide test coverage of the components.
 3. Ensure UI Matches the image
 
 ### Note
@@ -24,9 +25,10 @@ The 3 priorities that we provide you are:
 
 2. The messages should be color coded depending on the priority of the message. The appropriate color per priority is:
 
-   * error: #F56236
-   * warning: #FCE788
-   * info: #88FCA3
+   - error: #F56236
+   - warning: #FCE788
+   - info: #88FCA3
+
 3. Each time a message with the priority level of error is received, a snackbar containing the error message should also appear at the top right of the application. The error should disappear in 2 seconds, when another error message takes its place, or when the user clears it via the provided button located in the error message.
 4. A user should be able to clear all messages at any point.
 5. A user should be able to clear a specific message in a specific column
@@ -42,4 +44,4 @@ The 3 priorities that we provide you are:
 15. Pay attention to performance of your page rendering
 16. "nunffsaid.com Coding Challenge" is part of the design. Make sure that you dont miss that header
 
-***Applicants are provided this challenge with no expectation on deadline. Please take the time you need to complete the challenge to the best of your ability.***
+**_Applicants are provided this challenge with no expectation on deadline. Please take the time you need to complete the challenge to the best of your ability._**

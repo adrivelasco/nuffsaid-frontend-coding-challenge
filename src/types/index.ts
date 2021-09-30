@@ -3,7 +3,7 @@ import { Priority } from "../api";
 export type Entry = {
   id: string;
   message: string;
-  priority: Priority
+  priority: Priority;
 };
 
 export type Group<T> = {

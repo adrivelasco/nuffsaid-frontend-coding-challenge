@@ -1,7 +1,10 @@
 import { useRef, useCallback, useEffect, useState } from "react";
 import { Box, BoxProps, Snackbar, Alert } from "@mui/material";
 
-import { MessagesProvider, useMessagesContext } from '../../context/MessagesProvider';
+import {
+  MessagesProvider,
+  useMessagesContext,
+} from "../../context/MessagesProvider";
 import { generateMessage, Priority } from "../../api/index";
 import { Entry } from "../Entry";
 import { Group } from "../Group";
@@ -15,7 +18,8 @@ const Dashboard = (props: DashboardProps) => {
   const [isSubscribed, setIsSubscribed] = useState(true);
   const unsubscribe = useRef<() => void>();
 
-  const { entriesByGroup, addEntry, removeEntry, clearAll } = useMessagesContext();
+  const { entriesByGroup, addEntry, removeEntry, clearAll } =
+    useMessagesContext();
 
   const start = useCallback(() => {
     unsubscribe.current = generateMessage((message) => {
@@ -25,8 +29,8 @@ const Dashboard = (props: DashboardProps) => {
         setError(message.message);
       }
     });
-  }, [addEntry])
-  
+  }, [addEntry]);
+
   useEffect(() => {
     start();
 
@@ -36,16 +40,16 @@ const Dashboard = (props: DashboardProps) => {
   const handleOnSubscribe = () => {
     start();
     setIsSubscribed(true);
-  }
+  };
 
   const handleOnUnsuscribe = () => {
     unsubscribe.current?.();
     setIsSubscribed(false);
-  }
+  };
 
   const handleCloseSnackbar = () => {
     setError(null);
-  }
+  };
 
   return (
     <Box position="relative">
@@ -67,9 +71,9 @@ const Dashboard = (props: DashboardProps) => {
               width={1 / 3}
               mr={1}
               sx={{
-                '&:last-child': {
-                  m: 0
-                }
+                "&:last-child": {
+                  m: 0,
+                },
               }}
             >
               {entries.map(({ id, message, priority }) => {
@@ -93,12 +97,14 @@ const Dashboard = (props: DashboardProps) => {
         })}
       </Box>
       <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
         autoHideDuration={2000}
         onClose={handleCloseSnackbar}
         open={Boolean(error)}
       >
-        <Alert severity="error" elevation={1} onClose={handleCloseSnackbar}>Error: {error}</Alert>
+        <Alert severity="error" elevation={1} onClose={handleCloseSnackbar}>
+          Error: {error}
+        </Alert>
       </Snackbar>
     </Box>
   );
@@ -110,4 +116,4 @@ const DashboardWithContext = () => (
   </MessagesProvider>
 );
 
-export { DashboardWithContext as Dashboard }; 
+export { DashboardWithContext as Dashboard };
