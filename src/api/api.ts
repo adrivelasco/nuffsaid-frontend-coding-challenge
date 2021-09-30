@@ -2,7 +2,7 @@ import random from 'lodash/random';
 import faker from 'faker';
 import { Observable } from 'rxjs';
 
-enum Priority {
+export enum Priority {
   Error,
   Warn,
   Info,
@@ -24,11 +24,9 @@ const observable = new Observable<Message>(subscriber => {
   generate();
 });
 
-const subscribe = (callback: (message: Message) => void) => {
+export const generateMessage = (callback: (message: Message) => void) => {
   const subscription = observable.subscribe({
     next: callback,
   });
   return () => subscription.unsubscribe();
 };
-
-export default subscribe;

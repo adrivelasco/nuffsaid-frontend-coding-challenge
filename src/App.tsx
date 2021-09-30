@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import generateMessage, { Message } from './Api';
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 
-const App: React.FC<{}> = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+import { Dashboard } from './components/Dashboard';
+import { Header } from './components/Header';
+import { theme } from './theme';
 
-  useEffect(() => {
-    const cleanUp = generateMessage((message: Message) => {
-      setMessages(oldMessages => [...oldMessages, message]);
-    });
-    return cleanUp;
-  }, [setMessages]);
-
-  return (
-    <div>
-      {messages?.map?.(msg => <div key={msg?.message}>{msg?.message}</div>)}
-    </div>
-  );
-}
-
-export default App;
+export const App = () => (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Box
+      m="0 auto"
+      maxWidth={{ sm: "100%", md: "1024px" }}
+      px={2}
+      py={2}
+    >
+      <Header />
+      <Dashboard />
+    </Box>
+  </ThemeProvider>
+);
