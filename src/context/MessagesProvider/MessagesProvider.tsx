@@ -1,14 +1,18 @@
 import { ReactNode } from "react";
 
-import { useEntriesByGroup } from "./useEntriesByGroup";
+import { useEntriesByGroup, EntriesByGroup } from "./useEntriesByGroup";
 import { MessagesContext } from "./MessagesContext";
 
 export interface MessagesProviderProps {
   children: ReactNode;
+  initialValue?: EntriesByGroup;
 }
 
-export const MessagesProvider = ({ children }: MessagesProviderProps) => {
-  const context = useEntriesByGroup();
+export const MessagesProvider = ({
+  children,
+  initialValue,
+}: MessagesProviderProps) => {
+  const context = useEntriesByGroup(initialValue);
 
   return <MessagesContext value={context}>{children}</MessagesContext>;
 };

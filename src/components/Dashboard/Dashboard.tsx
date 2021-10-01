@@ -1,25 +1,20 @@
 import { useRef, useCallback, useEffect, useState } from "react";
 import { Box, BoxProps, Snackbar, Alert } from "@mui/material";
 
-import {
-  MessagesProvider,
-  useMessagesContext,
-} from "../../context/MessagesProvider";
-import { generateMessage, Priority } from "../../api/index";
-import { Entry } from "../Entry";
-import { Group } from "../Group";
+import { useMessagesContext } from "../../context/MessagesProvider";
+import { generateMessage, Priority } from "../../api";
 import { DashboardActions } from "./DashboardActions";
+import { DashboardMessages } from "./DashboardMessages";
 
 export type DashboardProps = BoxProps;
 
-const Dashboard = (props: DashboardProps) => {
+export const Dashboard = (props: DashboardProps) => {
   const [error, setError] = useState<string | null>(null);
 
   const [isSubscribed, setIsSubscribed] = useState(true);
   const unsubscribe = useRef<() => void>();
 
-  const { entriesByGroup, addEntry, removeEntry, clearAll } =
-    useMessagesContext();
+  const { addEntry, clearAll } = useMessagesContext();
 
   const start = useCallback(() => {
     unsubscribe.current = generateMessage((message) => {
@@ -59,43 +54,7 @@ const Dashboard = (props: DashboardProps) => {
         onStart={handleOnSubscribe}
         onClear={clearAll}
       />
-      <Box display="flex" py={3}>
-        {Object.keys(entriesByGroup).map((key, i) => {
-          const { name, entries } = entriesByGroup[key];
-
-          return (
-            <Group
-              description={`Count: ${entries.length}`}
-              key={i}
-              title={`${name} Type ${i + 1}`}
-              width={1 / 3}
-              mr={1}
-              sx={{
-                "&:last-child": {
-                  m: 0,
-                },
-              }}
-            >
-              {entries.map(({ id, message, priority }) => {
-                const handleOnClear = () => {
-                  removeEntry({ id, priority });
-                };
-
-                return (
-                  <Entry
-                    key={id}
-                    mb={1}
-                    onClear={handleOnClear}
-                    priority={priority}
-                  >
-                    {message}
-                  </Entry>
-                );
-              })}
-            </Group>
-          );
-        })}
-      </Box>
+      <DashboardMessages />
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         autoHideDuration={2000}
@@ -110,10 +69,4 @@ const Dashboard = (props: DashboardProps) => {
   );
 };
 
-const DashboardWithContext = () => (
-  <MessagesProvider>
-    <Dashboard />
-  </MessagesProvider>
-);
-
-export { DashboardWithContext as Dashboard };
+export const DashboardListener = () => {};

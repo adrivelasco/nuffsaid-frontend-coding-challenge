@@ -1,10 +1,10 @@
 import { Box, Button } from "@mui/material";
 
 export interface DashboardActionsProps {
-  isSubscribed: boolean;
-  onClear: () => void;
-  onStart: () => void;
-  onStop: () => void;
+  isSubscribed?: boolean;
+  onClear?: () => void;
+  onStart?: () => void;
+  onStop?: () => void;
 }
 
 export const DashboardActions = ({

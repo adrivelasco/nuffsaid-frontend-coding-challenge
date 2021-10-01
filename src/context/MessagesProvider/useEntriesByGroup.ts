@@ -1,15 +1,17 @@
 import * as uuid from "uuid";
 import { useCallback, useState } from "react";
 
-import { Priority } from "../../api";
 import { Entry, Group } from "../../types";
+import { getPriorityName } from "../../utils";
 
 export type EntriesByGroup = {
   [key: string]: Group<Entry>;
 };
 
-export const useEntriesByGroup = () => {
-  const [entriesByGroup, setEntriesByGroup] = useState<EntriesByGroup>({});
+export const useEntriesByGroup = (initialValue?: EntriesByGroup) => {
+  const [entriesByGroup, setEntriesByGroup] = useState<EntriesByGroup>(
+    initialValue ?? {}
+  );
 
   const addEntry = useCallback(
     ({ priority, message }: Pick<Entry, "message" | "priority">) => {
@@ -84,16 +86,3 @@ export const useEntriesByGroup = () => {
 };
 
 export type UseEntriesByGroupReturn = ReturnType<typeof useEntriesByGroup>;
-
-const getPriorityName = (priority: Priority) => {
-  switch (priority) {
-    case Priority.Error:
-      return "Error";
-    case Priority.Warn:
-      return "Warning";
-    case Priority.Info:
-      return "Info";
-    default:
-      return "Unknown";
-  }
-};
